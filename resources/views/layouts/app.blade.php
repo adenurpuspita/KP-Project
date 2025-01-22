@@ -85,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="/sliders" class="nav-link">
+                    <a href="{{route('Rencana.index')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Rancangan Pembangunan</p>
                     </a>
@@ -203,7 +203,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; {{date('Y')}} <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{date('Y')}} .</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

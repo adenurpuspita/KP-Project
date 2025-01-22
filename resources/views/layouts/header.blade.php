@@ -70,7 +70,7 @@
               Informasi Publik
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownPublik">
-              <li><a class="dropdown-item" href="{{ route('Rencana.index') }}">Rancangan Pembangunan</a></li>
+              <li><a class="dropdown-item" href="{{ route('Rencana.user') }}">Rancangan Pembangunan</a></li>
               <li><a class="dropdown-item" href="{{ route('pembangunan') }}">Pembangunan Desa</a></li>
               <li><a class="dropdown-item" href="{{ route('potensi') }}">Potensi Desa</a></li>
               <li><a class="dropdown-item" href="{{ route('produk') }}">Produk Desa</a></li>

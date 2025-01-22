@@ -27,6 +27,16 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->role === 'rt') {
+            return redirect()->route('website.home'); // Ganti dengan route halaman utama website desa
+        }
+    }
         // Validasi input
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -61,4 +71,17 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    // Di dalam fungsi authenticated() atau sesuai dengan method login yang Anda gunakan
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard'); // Ganti dengan route halaman admin
+        } elseif ($user->role === 'rt') {
+            return redirect()->route('rt.dashboard'); // Ganti dengan route halaman RT
+        } else {
+            return redirect('/'); // Default route untuk role lain (misalnya masyarakat)
+        }
+    }
+
 }

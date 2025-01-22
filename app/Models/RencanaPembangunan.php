@@ -21,10 +21,6 @@ class RencanaPembangunan extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'nama',
-        'email',
-        'alamat',
-        'file',
-    ];
+    protected $fillable = ['nama', 'email', 'alamat', 'file', 'status'];
+
 }

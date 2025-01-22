@@ -58,13 +58,25 @@ Route::get('/slider', [SliderController::class, 'show'])->name('slider.show');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 //login form
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// //register
+// Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+// Route::post('/register', [RegisterController::class, 'register']);
+
+// Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-//register
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+});
+
 
 //profil desa
 Route::get('/tentangkami', [TentangKamiController::class, 'index'])->name('tentangkami');
@@ -100,8 +112,23 @@ Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda');
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 
 Route::get('/Rencana', [RencanaPembangunanController::class, 'index'])->name('Rencana.index');
+Route::get('/Rencana/user', [RencanaPembangunanController::class, 'user'])->name('Rencana.user');
 Route::get('/Rencana/create', [RencanaPembangunanController::class, 'create'])->name('Rencana.create');
 Route::post('/Rencana', [RencanaPembangunanController::class, 'store'])->name('Rencana.store');
+Route::get('/rencana/view/{id}', [RencanaPembangunanController::class, 'viewPDF'])->name('Rencana.viewPDF');
+Route::patch('/rencana/{id}/status/{status}', [RencanaPembangunanController::class, 'updateStatus'])->name('Rencana.updateStatus');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/rencana', [RencanaController::class, 'index'])->name('Rencana.index');
+    Route::get('/rencana/create', [RencanaController::class, 'create'])->name('Rencana.create');
+    // Route lainnya yang membutuhkan autentikasi
+});
+
+Route::middleware(['auth', 'role.redirect'])->group(function () {
+    // Route khusus untuk pengguna yang sudah login
+});
+
+
 
 
 Route::middleware('auth')->group(function(){

@@ -14,9 +14,17 @@ class RencanaPembangunanController extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
+        {
+            
+            $rencanaPembangunans = RencanaPembangunan::all();
+
+            return view('Rencana.index', compact('rencanaPembangunans'));
+        }
+
+    public function user()
     {
-        $rencanaPembangunan = RencanaPembangunan::all();
-        return view('Rencana.index', compact('rencanaPembangunan'));
+        $rencanaPembangunans = RencanaPembangunan::all();
+        return view('Rencana.user', compact('rencanaPembangunans'));
     }
 
     /**
@@ -41,22 +49,38 @@ class RencanaPembangunanController extends Controller
             'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'alamat' => 'required|string',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'required|file|mimes:pdf|max:2048', // Accept only PDF files
         ]);
-
-        // Simpan file yang diunggah
+    
+        // Store the uploaded PDF file
         $filePath = $request->file('file')->store('rencana_pembangunan', 'public');
-
-        // Buat rencana pembangunan baru
-        RencanaPembangunan::create([
+    
+        // Create a new Rencana Pembangunan entry
+        $rencanaPembangunan = RencanaPembangunan::create([
             'nama' => $request->nama,
             'email' => $request->email,
             'alamat' => $request->alamat,
             'file' => $filePath,
         ]);
-
+    
         return redirect()->route('Rencana.index')->with('success', 'Rencana Pembangunan berhasil ditambahkan.');
     }
+    public function viewPDF($id)
+    {
+        // Ensure we're fetching a single record by using `findOrFail`
+        $rencanaPembangunan = RencanaPembangunan::findOrFail($id);
+    
+        // Get the PDF file path
+        $filePath = storage_path('app/public/' . $rencanaPembangunan->file);
+    
+        // Check if file exists before displaying it
+        if (file_exists($filePath)) {
+            return response()->file($filePath);
+        } else {
+            return redirect()->route('Rencana.index')->with('error', 'File tidak ditemukan.');
+        }
+    }
+    
 
     /**
      * Tampilkan detail rencana pembangunan.
@@ -139,5 +163,13 @@ class RencanaPembangunanController extends Controller
         $rencanaPembangunan->delete();
 
         return redirect()->route('rencana_pembangunan.index')->with('success', 'Rencana Pembangunan berhasil dihapus.');
+    }
+    public function updateStatus($id, $status)
+    {
+        $rencanaPembangunan = RencanaPembangunan::findOrFail($id);
+        $rencanaPembangunan->status = $status;
+        $rencanaPembangunan->save();
+
+        return redirect()->route('Rencana.index')->with('success', 'Status rencana pembangunan berhasil diperbarui.');
     }
 }
