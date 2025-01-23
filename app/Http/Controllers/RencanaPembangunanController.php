@@ -63,7 +63,7 @@ class RencanaPembangunanController extends Controller
             'file' => $filePath,
         ]);
     
-        return redirect()->route('Rencana.index')->with('success', 'Rencana Pembangunan berhasil ditambahkan.');
+        return redirect()->route('Rencana.user')->with('success', 'Rencana Pembangunan berhasil ditambahkan.');
     }
     public function viewPDF($id)
     {

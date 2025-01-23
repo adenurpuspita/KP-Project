@@ -11,7 +11,7 @@
 <div class="container mt-5 pt-5">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="fw-bold">Partisipasi Masyarakat Desa Sukamaju</h1>
+            <h1 class="fw-bold">Realisasi Program Kerja</h1>
             <p style="text-align: justify">
                 Partisipasi masyarakat Desa Sukamaju sangat penting untuk menciptakan desa yang maju dan mandiri. Berikut adalah beberapa cara masyarakat dapat berpartisipasi dalam berbagai kegiatan desa.
             </p>

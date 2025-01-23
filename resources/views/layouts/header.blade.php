@@ -91,11 +91,11 @@
           <li class="nav-item">
             <a class="nav-link fw-bolder" href="{{ route('kontak') }}">Kontak</a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('login') }}" class="nav-link fw-bolder">
               <i class='fas fa-user-alt'></i>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </div>
     </div>

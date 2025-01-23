@@ -9,7 +9,7 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <div class="container">
-    <h1 class="mb-4">Tambah Berita Baru</h1>
+    <h1 class="mb-4">Tambah Agenda Baru</h1>
 
     <!-- Tampilkan pesan error jika ada -->
     @if ($errors->any())
@@ -23,18 +23,18 @@
     @endif
 
     <!-- Form untuk menambah berita baru -->
-    <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('agenda.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <!-- Input untuk judul -->
         <div class="form-group mb-3">
-            <label for="judul">Judul Berita</label>
+            <label for="judul">Judul agenda</label>
             <input type="text" name="judul" id="judul" class="form-control" value="{{ old('judul') }}" required>
         </div>
 
         <!-- Input untuk gambar -->
         <div class="form-group mb-3">
-            <label for="gambar">Gambar Berita</label>
+            <label for="gambar">Gambar agenda</label>
             <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
         </div>
 
@@ -45,7 +45,7 @@
         </div>
 
         <!-- Tombol submit -->
-        <button type="submit" class="btn btn-primary">Simpan Berita</button>
+        <button type="submit" class="btn btn-primary">Simpan agenda</button>
         <a href="{{ route('berita') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>

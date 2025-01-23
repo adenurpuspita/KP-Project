@@ -32,9 +32,9 @@ class LoginController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } elseif ($user->role === 'rt') {
-            return redirect()->route('website.home'); // Ganti dengan route halaman utama website desa
+                return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('Rencana.user'); 
         }
     }
         // Validasi input

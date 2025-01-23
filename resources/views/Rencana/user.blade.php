@@ -12,9 +12,9 @@
 <div class="container mt-5">
     <h2>Daftar Rencana Pembangunan</h2>
     {{-- <a href="{{ route('Rencana.create') }}" class="btn btn-primary my-3">Tambah Rencana Pembangunan</a> --}}
-    @can('admin')  <!-- Tombol hanya muncul jika pengguna memiliki izin 'admin' -->
+    {{-- @if(auth()->user()?->role == 'users')  <!-- Tombol hanya muncul jika pengguna memiliki izin 'admin' --> --}}
     <a href="{{ route('Rencana.create') }}" class="btn btn-primary my-3">Tambah Rencana Pembangunan</a>
-    @endcan
+    {{-- @endif --}}
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -49,4 +49,5 @@
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection
